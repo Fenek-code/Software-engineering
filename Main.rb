@@ -1,10 +1,10 @@
 # @return [nil]
 def hello
-  printf 'Введите имя >'
+  puts 'Введите имя >'
   name = gets
-  printf 'Введите фамилию >'
+  puts 'Введите фамилию >'
   lastname = gets
-  printf 'Введите возраст >'
+  puts 'Введите возраст >'
   age = gets.to_i
 
 
@@ -13,7 +13,7 @@ def hello
            else
              "Привет, #{name} #{lastname}. Самое время заняться делом!"
            end
-  printf answer.gsub("\n", '')
+  puts answer.gsub("\n", '')
 end
 
 # @return [Integer]
@@ -29,25 +29,26 @@ end
 # @return [nil]
 def main
   loop do
-    printf "\n1. Скрипт, который будет запрашивать имя,
+    puts "\n1. Скрипт, который будет запрашивать имя,
       фамилию и возраст, а затем выдавать приветствие в одном из двух вариантов,
       в зависимости от возраста.
-  2. Скрипт, который принимает пару чисел,
-      если хотя бы одно равно 20 - возвращает его, в противном случае выводит сумму этих чисел.\n>"
+2. Скрипт, который принимает пару чисел,
+      если хотя бы одно равно 20 - возвращает его, в противном случае выводит сумму этих чисел.
+q для выхода\n>"
 
     choice = gets.delete("\n")
     system('cls')
     case choice
     when '1'
       hello
-      print("\n")
+      puts("\n")
 
     when '2'
-      printf 'Значение a >'
+      puts 'Значение a >'
       a = gets.to_i
-      printf 'Значение b >'
+      puts 'Значение b >'
       b = gets.to_i
-      print("\nИтог: #{take_couple(a, b)}\n")
+      puts("\nИтог: #{take_couple(a, b)}\n")
 
     when 'q'
       break
