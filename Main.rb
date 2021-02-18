@@ -1,9 +1,9 @@
 # @return [nil]
 def hello
   puts 'Введите имя >'
-  name = gets
+  name = gets.chomp
   puts 'Введите фамилию >'
-  lastname = gets
+  lastname = gets.chomp
   puts 'Введите возраст >'
   age = gets.to_i
 
@@ -36,7 +36,7 @@ def main
       если хотя бы одно равно 20 - возвращает его, в противном случае выводит сумму этих чисел.
 q для выхода\n>"
 
-    choice = gets.delete("\n")
+    choice = gets.chomp
     system('cls')
     case choice
     when '1'
