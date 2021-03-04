@@ -1,26 +1,24 @@
-def reverse(a_s)
-  temp_a_s = ''
-  i = a_s.size
-  while i.positive?
-    temp_a_s += a_s[i].to_s
-    i -= 1
+def variable_games(line)
+  words = line.split(" ")
+  word = words[1].downcase
+  if word[-2...word.size] == "cs"
+    2**word.size
+  else
+    words[1].reverse
   end
-  temp_a_s
 end
 
-def variable_games(a_i, b_s)
-  length = b_s.size
-  ending = b_s[(length - 2)...length]
+def pokemons
+  amount = gets.to_i
+  amount.times do
 
-  if ending == 'CS'
-    2**length
-  else
-    reverse(b_s)
   end
 end
 
 def main
-  puts variable_games(0, 'asddasCS')
+  line = gets
+  #puts variable_games(line)
+  puts pokemons
 end
 
 main
