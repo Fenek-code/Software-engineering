@@ -8,17 +8,26 @@ def variable_games(line)
   end
 end
 
-def pokemons
-  amount = gets.to_i
+def pokemon(line)
+  pokemon_array = []
+  amount = line.split(" ")[0].to_i
   amount.times do
-
+    puts 'Введите ИМЯ покемона >'
+    name = gets.chomp
+    puts 'Введите ЦВЕТ покемона >'
+    color = gets.chomp
+    pokemon_array << { 'name' => name, 'color' => color }
   end
+  puts pokemon_array
 end
 
 def main
+  puts 'Введите число и слово, где будет числом будет являтся количество покемонов.'
   line = gets
-  #puts variable_games(line)
-  puts pokemons
+  puts 'работа со словом: '
+  puts variable_games(line)
+  puts 'работа с массивом хэшей покемонов: '
+  puts pokemon(line)
 end
 
 main
