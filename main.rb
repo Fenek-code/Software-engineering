@@ -1,13 +1,13 @@
 def students
   file = File.open('students list.txt')
-  students = file.read.split("\n")
+  students = file.read.lines
   file.close
   result = []
   puts 'Введите -1 для прекращения поиска'
   loop do
     puts 'Введите возраст студента'
     input = gets.to_i
-    break if input == -1  # для выхода ввести -1
+    break if input == -1
 
     students.each do |student|
       result.append(student) if student.split(' ')[2].to_i == input
@@ -25,19 +25,21 @@ end
 
 def bank
   balance = 100.0
-  if File.exist?('balance.txt') # проверка существования файла
+  if File.exist?('balance.txt')
     f = File.open('balance.txt')
     balance = f.read.to_f
     f.close
   end
   loop do
-    puts '[B] Баланс'
-    puts '[D] Депозит'
-    puts '[W] Списание '
-    puts '[Q] Выход'
+    puts "[B] Баланс
+[D] Депозит
+[W] Списание
+[Q] Выход"
 
     choose = gets.chomp
     case choose.downcase
+    when 'b'
+      puts "Ваш баланс: #{balance}"
     when 'd'
       puts 'Введите сумму для депозита'
       sum = gets.to_f
@@ -58,24 +60,22 @@ def bank
         balance -= sum
         puts "Ваш новый баланс: #{balance}"
       end
-    when 'b'
-      puts "Ваш баланс: #{balance}"
     when 'q'
-      f = File.open('balance.txt', 'w')
-      f.write(balance)
-      f.close
       break
     else
       puts 'Выбор неизвестен'
     end
+    f = File.open('balance.txt', 'rw')
+    f.write(balance)
+    f.close
   end
 end
 
 def main
   loop do
-    puts "[1] \tНайти студента по возрасту"
-    puts "[2] \tБанк"
-    puts "[-1]\tВыход"
+    puts "[1] \tНайти студента по возрасту
+[2] \tБанк
+[-1]\tВыход"
 
     choose = gets.to_i
     case choose
