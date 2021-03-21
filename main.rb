@@ -1,6 +1,6 @@
 def students
   file = File.open('students list.txt')
-  students = file.read.lines
+  students = file.readlines
   file.close
   result = []
   puts 'Введите -1 для прекращения поиска'
@@ -65,7 +65,7 @@ def bank
     else
       puts 'Выбор неизвестен'
     end
-    f = File.open('balance.txt', 'rw')
+    f = File.open('balance.txt', 'w')
     f.write(balance)
     f.close
   end
