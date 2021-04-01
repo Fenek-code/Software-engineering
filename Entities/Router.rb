@@ -1,9 +1,12 @@
+# frozen_string_literal: true
 module Resource
   def connection(routes)
     if routes.nil?
       puts "Нет подходящих маршрутов для #{self}"
       return
     end
+
+    @commands = ['get', 'post', 'put', 'delete', 'index', 'show', 'q']
 
     loop do
       print 'Выберите команду для взаимодействия с ресурсами (GET/POST/PUT/DELETE) / q для выхода: '
@@ -13,13 +16,26 @@ module Resource
       action = nil
 
       if verb == 'get'
-        print 'Для выхода выберите действие (index/show) / q: '
-        action = gets.chomp.downcase
-        break if action == 'q'
+        loop do
+          print 'Для выхода выберите действие (index/show) / q: '
+          action = gets.chomp.downcase
+          break if action == 'q'
+
+          unless @commands.include?(action)
+            print "Неизвестная get команда\n"
+            next
+          end
+          break
+        end
       end
 
+      unless @commands.include?(verb)
+        print "Неизвестная команда\n"
+        next
+      end
 
       action.nil? ? routes[verb].call : routes[verb][action].call
+
     end
   end
 end
@@ -32,6 +48,7 @@ class PostsController
   end
 
   def index
+    puts "Posts\nID\tComment"
     @posts.each_with_index do |post, index|
       puts("#{index} #{post}")
     end
@@ -86,8 +103,9 @@ class CommentsController
   end
 
   def index
+    puts "Comments\nID\tComment"
     @comments.each_with_index do |comment, index|
-      puts("#{index} #{comment}")
+      puts("#{index}\t#{comment}")
     end
   end
 
@@ -148,6 +166,7 @@ class Router
       PostsController.connection(@routes['posts']) if choise == '1'
       CommentsController.connection(@routes['comments']) if choise == '2'
       break if choise == 'q'
+
     end
 
     puts 'До свидания!'
