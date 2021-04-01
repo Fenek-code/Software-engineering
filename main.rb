@@ -1,4 +1,5 @@
-load 'Entities/Bank.rb'
+load 'Entities/CashMachine.rb'
+load 'Entities/Router.rb'
 
 def main
   loop do
@@ -9,8 +10,11 @@ def main
     choose = gets.to_i
     case choose
     when 1
-      bank = Bank.new
-      bank.work
+      bank = CashMachine.new
+      bank.init
+    when 2
+      router = Router.new
+      router.init
     when -1
       break
     else

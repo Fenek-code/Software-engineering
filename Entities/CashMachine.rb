@@ -1,4 +1,4 @@
-class Bank
+class CashMachine
 
   def initialize
     @balance = 100.0
@@ -36,7 +36,7 @@ class Bank
     f.close
   end
 
-  def work
+  def init
     loop do
       puts "[B] Баланс
 [D] Депозит
