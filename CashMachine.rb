@@ -10,24 +10,8 @@ class CashMachine
     end
   end
 
-  def get_deposit(sum)
-    if !sum.positive?
-      puts 'Сумма должна быть больше нуля'
-    else
-      @balance += sum
-      puts "Ваш новый баланс: #{@balance}"
-    end
-  end
-
-  def get_write_off(sum)
-    if sum <= 0
-      puts 'Сумма должна быть больше нуля'
-    elsif sum > @balance
-      puts 'Недостаточно средств'
-    else
-      @balance -= sum
-      puts "Ваш новый баланс: #{@balance}"
-    end
+  def get_balance
+    @balance
   end
 
   def keep_balance
@@ -36,35 +20,24 @@ class CashMachine
     f.close
   end
 
-  def init
-    loop do
-      puts "[B] Баланс
-[D] Депозит
-[W] Списание
-[Q] Выход"
-
-      choose = gets.chomp
-      case choose.downcase
-
-      when 'b'
-        puts "Ваш баланс: #{@balance}"
-
-      when 'd'
-        puts 'Введите сумму для депозита'
-        get_deposit(gets.to_f)
-
-      when 'w'
-        puts 'Введите сумму для списания'
-        get_write_off(gets.to_f)
-
-      when 'q'
-        return 0
-
-      else
-        puts 'Выбор неизвестен'
-      end
-
-      keep_balance
+  def get_deposit(sum)
+    if !sum.positive?
+      'Amount must be greater than zero '
+    else
+      @balance += sum
+      "Your new balance: #{@balance}"
     end
   end
+
+  def get_write_off(sum)
+    if sum <= 0
+      'Amount must be greater than zero '
+    elsif sum > @balance
+      'Insufficient funds'
+    else
+      @balance -= sum
+      "Your new balance: #{@balance}"
+    end
+  end
+
 end
