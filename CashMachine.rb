@@ -10,7 +10,7 @@ class CashMachine
     end
   end
 
-  def get_balance
+  def balance
     @balance
   end
 
@@ -20,7 +20,7 @@ class CashMachine
     f.close
   end
 
-  def get_deposit(sum)
+  def deposit(sum)
     if !sum.positive?
       'Amount must be greater than zero '
     else
@@ -29,7 +29,7 @@ class CashMachine
     end
   end
 
-  def get_write_off(sum)
+  def write_off(sum)
     if sum <= 0
       'Amount must be greater than zero '
     elsif sum > @balance

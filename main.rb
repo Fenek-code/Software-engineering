@@ -33,13 +33,13 @@ while (connection = server.accept)
 
   answer += case method
             when 'deposit'
-              atm.get_deposit(value).to_s
+              atm.deposit(value).to_s
 
             when 'debit'
-              atm.get_write_off(value).to_s
+              atm.write_off(value).to_s
 
             when 'balance'
-              atm.get_balance.to_s
+              atm.balance.to_s
 
             when 'main'
               'Hi, try go by link like this:<br>
