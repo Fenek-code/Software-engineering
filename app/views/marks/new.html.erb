@@ -1,0 +1,12 @@
+<%= form_with model: [@product, @product.marks.build], local: true do |form| %>
+  <div align="center" class="acrylic shadow">
+    <div>
+      <%= form.label :points %><br>
+     <%= form.text_field :points %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>

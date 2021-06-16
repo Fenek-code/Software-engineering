@@ -1,0 +1,37 @@
+<h1 align="center"> Submit your solution </h1>
+<div id="place" class="acrylic shadow">
+  <div class="func-buttons">
+      <%= link_to "Add solution", new_product_path%>
+  </div>
+</div>
+<div id="place" class="acrylic shadow">
+  <% @products.each do |product| %>
+    <% flag = false %>
+    <% mark = Mark.new %>
+    <% @marks.each do |m| %>
+      <% if product.id == m.product_id %>
+        <% mark = m %>
+        <% flag = true %>
+      <% end %>
+    <% end %>
+    <% if !flag %>
+      <div class="shadow">
+        <br>
+        <b><%= product.title %> </b> <br>
+        <%= product.description %> <br>
+        <%= link_to "ADD Rating", new_product_mark_path(product) %>
+        <%= link_to "Remove", product, method: :delete, data: {confirm: "U Sure?"} %> <br>
+        <br>
+      </div>
+    <% else %>
+      <div class="shadow">
+        <br>
+        <b><%= product.title %> </b> <br>
+        <%= product.description %> <br>
+        Rating <%= mark.letter %> [<%= mark.points %>]
+        <%= link_to "Remove", product, method: :delete, data: {confirm: "U Sure?"} %> <br>
+        <br>
+      </div>
+    <% end %>
+  <% end %>
+</div>
